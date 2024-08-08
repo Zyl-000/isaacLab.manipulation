@@ -139,11 +139,11 @@ class JointPositionAction(JointAction):
 
     def apply_actions(self):
         # set position targets
-        self.processed_actions = self.processed_actions.clamp(
+        processed_actions = self.processed_actions.clamp(
             self._asset.data.soft_joint_pos_limits[:, self._joint_ids, 0],
             self._asset.data.soft_joint_pos_limits[:, self._joint_ids, 1],
         )
-        self._asset.set_joint_position_target(self.processed_actions, joint_ids=self._joint_ids)
+        self._asset.set_joint_position_target(processed_actions, joint_ids=self._joint_ids)
 
 
 class RelativeJointPositionAction(JointAction):
